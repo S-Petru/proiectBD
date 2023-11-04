@@ -1,18 +1,21 @@
-require('dotenv').config();
-const cors = require('cors');
 const express = require('express');
-const app = express();
-
-app.use(cors({
-    credentials:true
-}))
-
 const { Pool } = require('pg');
+require('dotenv').config();
+// const cors = require('cors');
 
-const isProduction = process.env.NODE_ENV === 'production';
+// app.use(cors({
+//     credentials:true
+// }))
+
+const app = express();
+const port = process.env.PORT || 3001;
+const databaseUrl = process.env.DATABASE_URL;
+
+// const isProduction = process.env.NODE_ENV === 'production';
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: databaseUrl,
+  ssl: false,
 });
 
 
@@ -35,7 +38,6 @@ app.get('/test', async (req, res) => {
   });  
 
 // Start the server
-const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${port}`);
 });

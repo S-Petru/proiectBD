@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from 'react';
 
 const TestComponent = () => {
-  const [responseData, setResponseData] = useState(null);
+    const [responseData, setResponseData] = useState(null);
+  
+    useEffect(() => {
+// console.log(`localhost:3001/test`)
 
-  useEffect(() => {
-    const fetchTestData = async () => {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/test`);
-        if (response.ok) {
-          const data = await response.json();
-          setResponseData(data);
-        } else {
-          console.error('Failed to fetch data.');
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+      const fetchTestData = async () => {
 
-    fetchTestData();
-  }, []);
+        // fetch("http://localhost:3001/test")
+        fetch(`${process.env.REACT_APP_API_URL}/test`)
+.then(response => response.json())
+.then(data => {
+  console.log('Received JSON:', data);
+})
+.catch(error => console.error('Error fetching data:', error));
 
-  return (
-    <div>
-      {responseData && (
-        <div>
-          <p>Test data received from backend:</p>
-          <pre>{JSON.stringify(responseData, null, 2)}</pre>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default TestComponent;
+      };
+  
+      fetchTestData();
+    }, []);
+  
+    return (
+      <div>
+        {responseData && (
+          <div>
+            <p>Test data received from backend:</p>
+            <pre>{JSON.stringify(responseData, null, 2)}</pre>
+          </div>
+        )}
+      </div>
+    );
+  };
+  
+  export default TestComponent;

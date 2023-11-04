@@ -1,6 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+// Enable CORS for requests from your frontend
+app.use(cors({
+    origin: 'http://localhost:3000' // This should match the port your frontend is served on
+  }));
+  
 
 const { Pool } = require('pg');
 
@@ -20,13 +27,15 @@ app.get('/', (req, res) => {
 });
 
 // ==
-app.get('/test', (req, res) => {
-    // Prepare some JSON data to send
-    const dataToSend = { key: 'value' };
-    
-    // Send JSON data to the client
-    res.json(dataToSend);
-  });
+app.get('/test', async (req, res) => {
+    try {
+      const { rows } = await pool.query('SELECT * FROM tabelatest');
+      res.json(rows);
+    } catch (error) {
+      res.status(500).send('Server error');
+      console.error(error);
+    }
+  });  
 
 // Start the server
 const PORT = process.env.PORT || 3001;

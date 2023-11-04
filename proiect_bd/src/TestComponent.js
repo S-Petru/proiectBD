@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-require('dotenv').config();
 
 const TestComponent = () => {
     const [responseData, setResponseData] = useState(null);
   
     useEffect(() => {
-console.log(`${process.env.API_URL}/test`)
+// console.log(`localhost:3001/test`)
 
       const fetchTestData = async () => {
 
-        fetch(`${process.env.API_URL}/test`)
+        fetch("http://localhost:3001/test")
 .then(response => response.json())
 .then(data => {
   console.log('Received JSON:', data);

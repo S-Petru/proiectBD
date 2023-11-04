@@ -3,6 +3,10 @@ const { Pool } = require('pg');
 require('dotenv').config();
 const cors = require('cors');
 
+const app = express();
+const port = process.env.PORT || 3001;
+const databaseUrl = process.env.DATABASE_URL;
+
 // app.use(cors({
 //     credentials:true
 // }))
@@ -36,10 +40,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-const app = express();
-const port = process.env.PORT || 3001;
-const databaseUrl = process.env.DATABASE_URL;
 
 // const isProduction = process.env.NODE_ENV === 'production';
 

@@ -1,27 +1,42 @@
 const express = require('express');
 const { Pool } = require('pg');
 require('dotenv').config();
-// const cors = require('cors');
+const cors = require('cors');
 
 // app.use(cors({
 //     credentials:true
 // }))
 
-const getComments = () => {
-    const config = {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+// const getComments = () => {
+//     const config = {
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
   
-      },
-      method: "GET",
-      url: `${url}/all`,
-      withCredentials: true,
-    };
-    return axios(config)
-      .then(serviceHelper.onGlobalSuccess)
-      .catch(serviceHelper.onGlobalError);
-  };
+//       },
+//       method: "GET",
+//       url: `${url}/all`,
+//       withCredentials: true,
+//     };
+//     return axios(config)
+//       .then(serviceHelper.onGlobalSuccess)
+//       .catch(serviceHelper.onGlobalError);
+//   };
+
+const allowedOrigins = ['http://localhost:3000', 'https://proiect-bd.onrender.com/'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
+app.use(cors(corsOptions));
+
 const app = express();
 const port = process.env.PORT || 3001;
 const databaseUrl = process.env.DATABASE_URL;

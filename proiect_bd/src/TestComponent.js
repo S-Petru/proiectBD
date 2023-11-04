@@ -8,7 +8,8 @@ const TestComponent = () => {
 
       const fetchTestData = async () => {
 
-        fetch("http://localhost:3001/test")
+        // fetch("http://localhost:3001/test")
+        fetch(`${process.env.REACT_APP_API_URL}/test`)
 .then(response => response.json())
 .then(data => {
   console.log('Received JSON:', data);

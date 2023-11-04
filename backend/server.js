@@ -1,13 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const app = express();
-
-// Enable CORS for requests from your frontend
-app.use(cors({
-    origin: 'http://localhost:3000' // This should match the port your frontend is served on
-  }));
-  
 
 const { Pool } = require('pg');
 

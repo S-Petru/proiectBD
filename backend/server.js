@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: isProduction ? { rejectUnauthorized: true } : false
+  ssl: isProduction ? { rejectUnauthorized: true } : { rejectUnauthorized: true }
 });
 
 
@@ -20,15 +20,13 @@ app.get('/', (req, res) => {
 });
 
 // ==
-app.get('/test', async (req, res) => {
-    try {
-      const { rows } = await pool.query('SELECT * FROM tabelatest');
-      res.json(rows);
-    } catch (error) {
-      res.status(500).send('Server error');
-      console.error(error);
-    }
-  });  
+app.get('/test', (req, res) => {
+    // Prepare some JSON data to send
+    const dataToSend = { key: 'value' };
+    
+    // Send JSON data to the client
+    res.json(dataToSend);
+  });
 
 // Start the server
 const PORT = process.env.PORT || 3001;

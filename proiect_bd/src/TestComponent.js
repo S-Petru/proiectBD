@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
+require('dotenv').config();
 
 const TestComponent = () => {
     const [responseData, setResponseData] = useState(null);
   
     useEffect(() => {
+console.log(`${process.env.API_URL}/test`)
+
       const fetchTestData = async () => {
-        try {
-          const response = await fetch(`${process.env.API_URL}/test`);
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          setResponseData(data);
-        } catch (error) {
-          console.error("There was a problem with the fetch operation:", error);
-        }
+
+        fetch(`${process.env.API_URL}/test`)
+.then(response => response.json())
+.then(data => {
+  console.log('Received JSON:', data);
+})
+.catch(error => console.error('Error fetching data:', error));
+
       };
   
       fetchTestData();

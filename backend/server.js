@@ -1,6 +1,8 @@
 require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const { Pool } = require('pg');
 
@@ -8,7 +10,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: isProduction ? { rejectUnauthorized: true } : { rejectUnauthorized: true }
 });
 
 

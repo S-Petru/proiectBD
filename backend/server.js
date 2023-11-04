@@ -27,7 +27,7 @@ const databaseUrl = process.env.DATABASE_URL;
 //       .catch(serviceHelper.onGlobalError);
 //   };
 
-const allowedOrigins = ['http://localhost:3000', 'https://proiect-bd.onrender.com/'];
+const allowedOrigins = ['http://localhost:3000', 'https://proiect-bd.onrender.com/, https://proiect-bd.onrender.com/test'];
 
 const corsOptions = {
   origin: function (origin, callback) {

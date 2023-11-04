@@ -10,9 +10,9 @@ const TestComponent = () => {
 
         // fetch("http://localhost:3001/test")
         fetch(`${process.env.REACT_APP_API_URL}/test`)
-.then(response => response.json())
-.then(data => {
-  console.log('Received JSON:', data);
+            .then(response => response.json())
+            .then(data => {
+            console.log('Received JSON:', data);
 })
 .catch(error => console.error('Error fetching data:', error));
 

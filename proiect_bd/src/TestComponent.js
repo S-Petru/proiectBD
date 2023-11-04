@@ -6,7 +6,7 @@ const TestComponent = () => {
     useEffect(() => {
       const fetchTestData = async () => {
         try {
-          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/test`);
+          const response = await fetch(`${process.env.API_URL}/test`);
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }

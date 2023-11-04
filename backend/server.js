@@ -7,16 +7,21 @@ require('dotenv').config();
 //     credentials:true
 // }))
 
-let server = express();
-server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With,Content-Type,Accept'
-  );
-  next();
-});
-
+const getComments = () => {
+    const config = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+  
+      },
+      method: "GET",
+      url: `${url}/all`,
+      withCredentials: true,
+    };
+    return axios(config)
+      .then(serviceHelper.onGlobalSuccess)
+      .catch(serviceHelper.onGlobalError);
+  };
 const app = express();
 const port = process.env.PORT || 3001;
 const databaseUrl = process.env.DATABASE_URL;

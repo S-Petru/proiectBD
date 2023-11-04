@@ -1,5 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
+// const getComments = () => {
+//     const config = {
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
+  
+//       },
+//       method: "GET",
+//       url: `${url}/all`,
+//       withCredentials: true,
+//     };
+//     return axios(config)
+//       .then(serviceHelper.onGlobalSuccess)
+//       .catch(serviceHelper.onGlobalError);
+//   };
+
 const TestComponent = () => {
     const [responseData, setResponseData] = useState(null);
   

@@ -7,25 +7,26 @@ const app = express();
 const port = process.env.PORT || 3001;
 const databaseUrl = process.env.DATABASE_URL;
 
-// app.use(cors({
-//     credentials:true
-// }))
+let server = express();
 
-// const getComments = () => {
-//     const config = {
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-  
-//       },
-//       method: "GET",
-//       url: `${url}/all`,
-//       withCredentials: true,
-//     };
-//     return axios(config)
-//       .then(serviceHelper.onGlobalSuccess)
-//       .catch(serviceHelper.onGlobalError);
-//   };
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With,Content-Type,Accept'
+    );
+    next();
+  });
+
+  app.use(
+    cors({
+      origin: "*",
+      methods: "GET,POST",
+      allowedHeaders: "Content-Type,Authorization",
+      credentials: true,
+      preflightContinue: true,
+    })
+  );
 
 const allowedOrigins = ['http://localhost:3000', 'https://proiect-bd.onrender.com/, https://proiect-bd.onrender.com/test'];
 
@@ -40,15 +41,28 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(express.json());
 
+const getComments = () => {
+    const config = {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+  
+      },
+      method: "GET",
+      url: `${url}/all`,
+      withCredentials: true,
+    };
+    return axios(config)
+      .then(serviceHelper.onGlobalSuccess)
+      .catch(serviceHelper.onGlobalError);
+  };
 // const isProduction = process.env.NODE_ENV === 'production';
 
 const pool = new Pool({
   connectionString: databaseUrl,
 });
-
-
-app.use(express.json());
 
 // Define a sample route
 app.get('/', (req, res) => {

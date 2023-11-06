@@ -54,6 +54,8 @@ const TestComponent = () => {
     const [error, setError] = useState(null);
   
     useEffect(() => {
+      console.log(`${process.env.REACT_APP_API_URL}/test`)
+
       const fetchTestData = async () => {
         try {
           const response = await fetch(`${process.env.REACT_APP_API_URL}/test`);
@@ -65,12 +67,16 @@ const TestComponent = () => {
             setError(errorData);
           }
         } catch (error) {
-          console.error('Error fetching data:', error);
-          setError('Failed to fetch data.');
+          console.log("E bun");
+          console.log(error);
+          // console.error('Error fetching data:', error);
+          // setError('Failed to fetch data.');
         }
       };
   
       fetchTestData();
+
+      console.log()
     }, []);
   
     return (

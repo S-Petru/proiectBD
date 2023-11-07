@@ -11,8 +11,13 @@ app.use(cors({
     origin: '*',
   }));
 
+
+  // Resolved the ssl requirement for the localhost:3001/test (or any) endpoint
 const pool = new Pool({
   connectionString: databaseUrl,
+  ssl: {
+    rejectUnauthorized: false, // Use this for self-signed certificates; don't use it in production
+  },
 });
 
 // Define a sample route

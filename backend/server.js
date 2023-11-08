@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// ==
+// Test endpoint that gets all data from a test table 
 app.get('/test', async (req, res) => {
     try {
       const { rows } = await pool.query('SELECT * FROM tabelatest');

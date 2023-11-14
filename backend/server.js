@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 // Test endpoint that gets all data from a test table 
 app.get('/test', async (req, res) => {
     try {
-      const { rows } = await pool.query('SELECT * FROM tabelatest');
+      const { rows } = await pool.query('SELECT * FROM caracteristici');
       res.json(rows);
     } catch (error) {
       res.status(500).send('Server error');

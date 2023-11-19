@@ -1,16 +1,20 @@
 import React from 'react';
-import TestComponent from './TestComponent'; // Adjust the import path based on your file structure
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import MainPage from './Pages/MainPage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* Other components or content */}
-      </header>
-      <main>
-        <TestComponent />
-      </main>
-    </div>
+      <div>
+        <Router>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Router>
+      </div>
   );
 }
 

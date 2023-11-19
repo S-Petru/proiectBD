@@ -1,44 +1,92 @@
 const express = require('express');
 const { Pool } = require('pg');
-require('dotenv').config();
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 const cors = require('cors');
-
+require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3001;
 const databaseUrl = process.env.DATABASE_URL;
 
 app.use(cors({
-    origin: '*',
-  }));
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
 
 
-  // Resolved the ssl requirement for the localhost:3001/test (or any) endpoint
 const pool = new Pool({
   connectionString: databaseUrl,
   ssl: {
-    rejectUnauthorized: false, // Use this for self-signed certificates; don't use it in production
+    rejectUnauthorized: false,
   },
 });
 
-// Define a sample route
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+
+
+app.use(bodyParser.json());
+
+// Registration endpoint
+app.post('/api/register', async (req, res) => {
+  const { username, email, password } = req.body;
+
+  // Hash the password before saving it
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  try {
+    // Check if the user already exists
+    const userCheckQuery = 'SELECT * FROM users WHERE username = $1 OR email = $2';
+    const userCheckValues = [username, email];
+    const userCheckResult = await pool.query(userCheckQuery, userCheckValues);
+
+    if (userCheckResult.rows.length > 0) {
+      return res.status(400).json({ message: 'Username or email already exists.' });
+    }
+
+    // Insert the new user into the "users" table
+    const insertUserQuery = 'INSERT INTO users (username, email, hash_parola) VALUES ($1, $2, $3)';
+    const insertUserValues = [username, email, hashedPassword];
+    await pool.query(insertUserQuery, insertUserValues);
+
+    res.status(201).json({ message: 'Registration successful' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
-// Test endpoint that gets all data from a test table 
-app.get('/test', async (req, res) => {
-    try {
-      const { rows } = await pool.query('SELECT * FROM caracteristici');
-      res.json(rows);
-    } catch (error) {
-      res.status(500).send('Server error');
-      console.error(error);
-    }
-  });  
 
-// Start the server
+// Login endpoint
+app.post('/api/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Check if the user exists
+    const userQuery = 'SELECT * FROM users WHERE username = $1';
+    const userValues = [username];
+    const userResult = await pool.query(userQuery, userValues);
+
+    if (userResult.rows.length === 0) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const user = userResult.rows[0];
+
+    // Compare the provided password with the hashed password from the database
+    const passwordMatch = await bcrypt.compare(password, user.hash_parola);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // You can send additional data or a token upon successful login if needed
+    res.status(200).json({ message: 'Login successful', user: { username: user.username, email: user.email } });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-// Branch push test

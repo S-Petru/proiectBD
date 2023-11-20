@@ -1,5 +1,4 @@
-/* styles.css */
-body {
+.wrapper {
     margin: 0;
     padding: 0;
     display: flex;
@@ -7,9 +6,9 @@ body {
     justify-content: center;
     height: 100vh;
     background-color: #f4f4f4;
-  }
-  
-  .register-container {
+}
+
+.container {
     width: 300px;
     padding: 20px;
     background-color: #fff;
@@ -17,21 +16,21 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .register-form {
+  .form {
     display: flex;
     flex-direction: column;
   }
   
-  label {
+  .label {
     margin-bottom: 10px;
   }
   
-  input {
+  .input {
     padding: 8px;
     margin-bottom: 15px;
   }
   
-  button {
+  .button {
     background-color: #4caf50;
     color: #fff;
     padding: 10px;
@@ -40,7 +39,7 @@ body {
     cursor: pointer;
   }
   
-  button:hover {
+  .button:hover {
     background-color: #45a049;
   }
   

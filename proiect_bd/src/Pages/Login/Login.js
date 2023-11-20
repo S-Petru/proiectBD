@@ -1,6 +1,7 @@
 // Login.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './Login.module.css';
 import axios from 'axios';
 
 const Login = () => {
@@ -20,37 +21,47 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // Your login logic here
+      // Make a POST request to the server's login endpoint
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/login`, formData);
 
-      // For now, let's assume a successful login redirects to MainPage
-      // Replace the below line with your actual login logic
+      // Assuming your backend returns a message and user data upon successful login
+      const { message, user } = response.data;
+
+      // You can do something with the user data if needed
+      console.log(message, user);
+
+      // Redirect to MainPage or update the state to reflect a successful login
       console.log('Login successful');
       window.location.href = '/';
     } catch (error) {
+      // If the login fails, show an error message on the browser
       console.error('Login failed', error.response.data);
+      alert('Wrong credentials. Please try again.');
     }
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <label className={styles.label}>
           Username:
           <input type="text" name="username" value={formData.username} onChange={handleChange} />
         </label>
 
-        <label>
+        <label className={styles.label}>
           Password:
           <input type="password" name="password" value={formData.password} onChange={handleChange} />
         </label>
 
-        <button type="submit">Login</button>
+        <button className={styles.button} type="submit">Login</button>
       </form>
 
       <p>
         Don't have an account? <Link to="/register">Register here</Link>
       </p>
+      </div>
     </div>
   );
 };

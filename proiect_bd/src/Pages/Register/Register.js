@@ -23,7 +23,7 @@ const Register = () => {
 
     try {
       // Hash the password before sending it to the server
-      const response = await axios.post('/api/register', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/register`, {
         username: formData.username,
         email: formData.email,
         password: formData.password, // You should hash the password on the server
@@ -46,17 +46,17 @@ const Register = () => {
             <input type="text" name="username" value={formData.username} onChange={handleChange} />
           </label>
 
-          <label>
+          <label className={styles.label}>
             Email:
             <input type="email" name="email" value={formData.email} onChange={handleChange} />
           </label>
 
-          <label>
+          <label className={styles.label}>
             Password:
             <input type="password" name="password" value={formData.password} onChange={handleChange} />
           </label>
 
-          <button type="submit">Register</button>
+          <button className={styles.button} type="submit">Register</button>
         </form>
 
         <p>

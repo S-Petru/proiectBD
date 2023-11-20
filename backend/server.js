@@ -45,7 +45,7 @@ app.post('/api/register', async (req, res) => {
     }
 
     // Insert the new user into the "users" table
-    const insertUserQuery = 'INSERT INTO users (username, email, hash_parola) VALUES ($1, $2, $3)';
+    const insertUserQuery = 'INSERT INTO users (username, email, hash_parola, rol) VALUES ($1, $2, $3)';
     const insertUserValues = [username, email, hashedPassword];
     await pool.query(insertUserQuery, insertUserValues);
 
@@ -81,7 +81,7 @@ app.post('/api/login', async (req, res) => {
     }
 
     // You can send additional data or a token upon successful login if needed
-    res.status(200).json({ message: 'Login successful', user: { username: user.username, email: user.email } });
+    res.status(200).json({ message: 'Login successful', user: { username: user.username, email: user.email, rol: user.rol} });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });

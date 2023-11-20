@@ -32,7 +32,12 @@ const Login = () => {
 
       // Redirect to MainPage or update the state to reflect a successful login
       console.log('Login successful');
-      window.location.href = '/';
+      if(user.rol) {
+        window.location.href = '/admin';
+      } else {
+        window.location.href = '/';
+      }
+      
     } catch (error) {
       // If the login fails, show an error message on the browser
       console.error('Login failed', error.response.data);

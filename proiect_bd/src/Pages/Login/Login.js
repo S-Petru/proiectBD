@@ -29,7 +29,7 @@ const Login = () => {
 
       // You can do something with the user data if needed
       console.log(message, user);
-
+      sessionStorage.setItem('user', JSON.stringify(user));
       // Redirect to MainPage or update the state to reflect a successful login
       console.log('Login successful');
       if(user.rol) {

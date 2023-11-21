@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../../Components/Navbar';
 
 const MainPage = () => {
   const handleLogout = () => {
@@ -11,6 +12,7 @@ const MainPage = () => {
 
   return (
     <div>
+      <Navbar />
       <h2>Main Page</h2>
       {/* Your main page content */}
       <button onClick={handleLogout}>Logout</button>

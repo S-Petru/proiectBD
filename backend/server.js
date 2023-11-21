@@ -3,6 +3,7 @@ const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
+const session = require('express-session');
 
 require('dotenv').config();
 const app = express();
@@ -23,7 +24,13 @@ const pool = new Pool({
   },
 });
 
-
+app.use(bodyParser.json());
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }, // Set secure to true in a production environment with HTTPS
+}));
 
 app.use(bodyParser.json());
 
@@ -64,7 +71,7 @@ app.post('/api/login', async (req, res) => {
   try {
     // Check if the user exists
     const userQuery = 'SELECT * FROM users WHERE username = $1';
-    const userValues = [username];
+    const userValues = [username]; 
     const userResult = await pool.query(userQuery, userValues);
 
     if (userResult.rows.length === 0) {
@@ -81,7 +88,8 @@ app.post('/api/login', async (req, res) => {
     }
 
     // You can send additional data or a token upon successful login if needed
-    res.status(200).json({ message: 'Login successful', user: { username: user.username, email: user.email, rol: user.rol} });
+    req.session.user = { username: user.username, email: user.email, rol: user.rol };
+    res.status(200).json({ message: 'Login successful', user: req.session.user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });

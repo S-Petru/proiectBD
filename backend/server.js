@@ -52,7 +52,7 @@ app.post('/api/register', async (req, res) => {
     }
 
     // Insert the new user into the "users" table
-    const insertUserQuery = 'INSERT INTO users (username, email, hash_parola, rol) VALUES ($1, $2, $3)';
+    const insertUserQuery = 'INSERT INTO users (username, email, hash_parola) VALUES ($1, $2, $3)';
     const insertUserValues = [username, email, hashedPassword];
     await pool.query(insertUserQuery, insertUserValues);
 
@@ -93,6 +93,22 @@ app.post('/api/login', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+// Endpoint to search and show info about a user's tranzactions
+app.post('/api/${desiredUsername}/tranzactii', async(req, res) => {
+  const username = req.body;
+
+  try {
+    // 
+    const userQuery = 'SELECT * FROM users WHERE username = $1';
+    const userValues = [username]; 
+    const userResult = await pool.query(userQuery, userValues);
+    const tranzactiiQuerry = 'SELECT * FROM tranzactii WHERE username = $1';
+  } catch {
+
   }
 });
 

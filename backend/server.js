@@ -25,11 +25,14 @@ const pool = new Pool({
 });
 
 app.use(bodyParser.json());
+
 app.use(session({
   secret: 'your-secret-key',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }, // Set secure to true in a production environment with HTTPS
+  cookie: {
+    secure: false, // Set to true in a production environment with HTTPS
+  },
 }));
 
 app.use(bodyParser.json());
@@ -88,7 +91,7 @@ app.post('/api/login', async (req, res) => {
     }
 
     // You can send additional data or a token upon successful login if needed
-    req.session.user = { username: user.username, email: user.email, rol: user.rol };
+    req.session.user = { username: user.username};
     res.status(200).json({ message: 'Login successful', user: req.session.user });
   } catch (error) {
     console.error(error);
@@ -97,18 +100,35 @@ app.post('/api/login', async (req, res) => {
 });
 
 
+
+
 // Endpoint to search and show info about a user's tranzactions
-app.post('/api/${desiredUsername}/tranzactii', async(req, res) => {
-  const username = req.body;
-
+app.post('/api/profil/tranzactii', async (req, res) => {
   try {
-    // 
-    const userQuery = 'SELECT * FROM users WHERE username = $1';
-    const userValues = [username]; 
-    const userResult = await pool.query(userQuery, userValues);
-    const tranzactiiQuerry = 'SELECT * FROM tranzactii WHERE username = $1';
-  } catch {
+    const desiredUsername = req.body.username;
 
+    const tranzactieQuery = `
+      SELECT
+        users.iduser AS iduser,
+        users.username AS username,
+        tranzactii.idtranzactie,
+        tranzactii.idmasina,
+        tranzactii.data_ora
+      FROM
+        users
+        JOIN tranzactii ON users.iduser = tranzactii.iduser
+      WHERE
+        users.username = $1
+    `;
+    
+    const tranzactieValues = [desiredUsername];
+    const tranzactieResult = await pool.query(tranzactieQuery, tranzactieValues);
+
+    const transactions = tranzactieResult.rows;
+    res.json(transactions);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 

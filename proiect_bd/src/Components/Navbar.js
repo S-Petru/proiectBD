@@ -15,6 +15,7 @@ const Navbar = () => {
   const logout = () => {
     sessionStorage.removeItem('user');
     setUser(null);
+    window.location.reload(false);
   };
 
   return (

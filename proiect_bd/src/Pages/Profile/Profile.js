@@ -56,7 +56,7 @@ const Profile = () => {
           </p>
         </>
       ) : (
-        <p>Loading user data...</p>
+        <p>Log in to display transactions</p>
       )}
     </div>
   );

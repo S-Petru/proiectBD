@@ -16,31 +16,59 @@ const Navbar = () => {
     sessionStorage.removeItem('user');
     setUser(null);
     window.location.reload(false);
+    window.location.href = '/';
   };
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/reviews">Reviews</Link>
-        </li>
-        {/* Other navigation links */}
-      </ul>
-      {user ? (
+    <>
+      {user && user.rol ? (
         <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Auto Deals</Link>
+              </li>
+            </ul>
+          </nav>
+          <span>
+            <Link to='/admin'>{user.username}</Link>
+          </span>
+          <button onClick={logout}>Logout</button>
+        </div>
+      ) : user ? (
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Auto Deals</Link>
+              </li>
+              <li>
+                <Link to="/reviews">Reviews</Link>
+              </li>
+            </ul>
+          </nav>
           <span>
             <Link to='/profile'>{user.username}</Link>
           </span>
           <button onClick={logout}>Logout</button>
         </div>
       ) : (
-        <Link to="/login">Login</Link>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Auto Deals</Link>
+              </li>
+            </ul>
+          </nav>
+          <span>
+            <Link to="/login">Login</Link>
+          </span>
+        </div>
       )}
-    </nav>
+    </>
   );
 };
+    
 
 export default Navbar;

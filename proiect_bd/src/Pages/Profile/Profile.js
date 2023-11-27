@@ -51,7 +51,7 @@ const Profile = () => {
           {/* Display transactions in a paragraph */}
           <p>
             {transactions.map((transaction) => (
-              `Transaction ID: ${transaction.idtranzactie}, Car ID: ${transaction.idmasina}, Date and Time: ${transaction.data_ora} `
+              `Transaction ID: ${transaction.idtranzactie}, Car ID: ${transaction.idmasina}, Date and Time: ${transaction.data_ora} ///`
             ))}
           </p>
         </>

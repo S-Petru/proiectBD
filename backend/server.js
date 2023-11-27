@@ -91,7 +91,7 @@ app.post('/api/login', async (req, res) => {
     }
 
     // You can send additional data or a token upon successful login if needed
-    req.session.user = { username: user.username};
+    req.session.user = { username: user.username, rol: user.rol};
     res.status(200).json({ message: 'Login successful', user: req.session.user });
   } catch (error) {
     console.error(error);

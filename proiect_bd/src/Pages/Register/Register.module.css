@@ -1,45 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.banner {
+  display: flex;
+  height: 200px;
+  width: 100vw;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner h2 {
+  padding: 0px;
+  margin: 0px;
+  font-size: 70px;
+  transform: skew(-16deg, 0deg);
+  font-weight: 800;
+  color: #FD673A;
+}
+
+.h2 {
+  font-size: 100px;
+  font-weight: 800;
+  transform: skew(-12deg, 0deg);
+}
+
 .wrapper {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f4f4f4;
+  color: #36454F;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: 'Exo 2', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-color: #ececec;
 }
 
 .container {
-    width: 300px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .label {
-    margin-bottom: 10px;
-  }
-  
-  .input {
-    padding: 8px;
-    margin-bottom: 15px;
-  }
-  
-  .button {
-    background-color: #4caf50;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #45a049;
-  }
-  
+  width: 300px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  transform: skew(-12deg, 0deg);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  text-transform: uppercase;
+  font-weight: 500;
+  transform: skew(-12deg, 0deg);
+  margin-bottom: 10px;
+  margin-top: 4px;
+}
+
+.button {
+  background-color: #36454F;
+  color: #ececec;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.button:hover {
+  background-color: #4c575e;
+}
+
+.info {
+  color: #a6a6a6;
+}
+
+.anchor {
+  text-decoration: none;
+  color: #4c575e;
+}
+
+.anchor:hover {
+  text-decoration: underline;
+}

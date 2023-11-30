@@ -47,8 +47,12 @@ const Login = () => {
 
   return (
     <div className={styles.wrapper}>
+      {/* Banner goes here */}
+      <div  className={styles.banner}>
+        <h2>MOTOR DEALS</h2>
+      </div>
       <div className={styles.container}>
-      <h2>Login</h2>
+      <h2 className={styles.title}>Login</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label}>
           Username:
@@ -63,8 +67,8 @@ const Login = () => {
         <button className={styles.button} type="submit">Login</button>
       </form>
 
-      <p>
-        Don't have an account? <Link to="/register">Register here</Link>
+      <p className={styles.info}>
+        Don't have an account? <Link to="/register" className={styles.anchor}>Register here</Link>
       </p>
       </div>
     </div>

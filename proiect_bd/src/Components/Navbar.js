@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -26,14 +27,17 @@ const Navbar = () => {
           <nav>
             <ul>
               <li>
-                <Link to="/">Auto Deals</Link>
+                <h1>Auto Deals</h1>
+              </li>
+              <li>
+                <Link to='/admin'>{user.username}</Link>
+              </li>
+              <li>
+              <button onClick={logout}>Logout</button>
               </li>
             </ul>
-          </nav>
-          <span>
-            <Link to='/admin'>{user.username}</Link>
-          </span>
-          <button onClick={logout}>Logout</button>
+            
+          </nav>         
         </div>
       ) : user ? (
         <div>
@@ -45,12 +49,18 @@ const Navbar = () => {
               <li>
                 <Link to="/reviews">Reviews</Link>
               </li>
+              <li>
+                <Link to='/profile'>{user.username}</Link>    
+              </li>
+              <li>
+              <button onClick={logout}>Logout</button>
+              </li>
             </ul>
           </nav>
           <span>
-            <Link to='/profile'>{user.username}</Link>
+            
           </span>
-          <button onClick={logout}>Logout</button>
+         
         </div>
       ) : (
         <div>
@@ -59,11 +69,11 @@ const Navbar = () => {
               <li>
                 <Link to="/">Auto Deals</Link>
               </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
             </ul>
           </nav>
-          <span>
-            <Link to="/login">Login</Link>
-          </span>
         </div>
       )}
     </>

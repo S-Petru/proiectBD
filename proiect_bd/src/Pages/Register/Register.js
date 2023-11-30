@@ -38,8 +38,11 @@ const Register = () => {
 
   return (
     <div className={styles.wrapper}>
+      <div  className={styles.banner}>
+        <h2>MOTOR DEALS</h2>
+      </div>
       <div className={styles.container}>
-        <h2>Register</h2>
+        <h2 className={styles.title}>Register</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label className={styles.label}>
             Username:
@@ -59,8 +62,8 @@ const Register = () => {
           <button className={styles.button} type="submit">Register</button>
         </form>
 
-        <p>
-          Already have an account? <Link to="/login">Login here</Link>
+        <p className={styles.info}>
+          Already have an account? <Link to="/login" className={styles.anchor}>Login here</Link>
         </p>
       </div>
     </div>

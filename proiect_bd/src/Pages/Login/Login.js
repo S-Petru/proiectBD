@@ -49,7 +49,7 @@ const Login = () => {
     <div className={styles.wrapper}>
       {/* Banner goes here */}
       <div  className={styles.banner}>
-        <h2>MOTOR DEALS</h2>
+        <h2><Link to="/">MOTOR DEALS</Link></h2>
       </div>
       <div className={styles.container}>
       <h2 className={styles.title}>Login</h2>
@@ -64,7 +64,7 @@ const Login = () => {
           <input type="password" name="password" value={formData.password} onChange={handleChange} />
         </label>
 
-        <button className={styles.button} type="submit">Login</button>
+        <button className={styles.logButton} type="submit">Login</button>
       </form>
 
       <p className={styles.info}>

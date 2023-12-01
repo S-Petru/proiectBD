@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Navbar.module.css';
+import style from './Navbar.module.css';
 import { Link } from 'react-router-dom';
+import {PiUser} from 'react-icons/pi';
+import { FaArrowRightFromBracket } from 'react-icons/fa6'
+import { FaRegStar} from 'react-icons/fa6'
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -23,54 +26,46 @@ const Navbar = () => {
   return (
     <>
       {user && user.rol ? (
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <h1>Auto Deals</h1>
+        <div className={style.navContainer}>
+          <nav className={style.navClass}>
+          <Link to="/" className={style.navTitle}>Motor Deals</Link>
+            <ul className={style.navUl}>
+              <li className={style.navLi}>
+                <Link to='/admin' className={style.navAnchor}><PiUser />{user.username}</Link>
               </li>
-              <li>
-                <Link to='/admin'>{user.username}</Link>
-              </li>
-              <li>
-              <button onClick={logout}>Logout</button>
+              <li className={style.navLi}>
+                <a onClick={logout} className={style.navAnchor}><FaArrowRightFromBracket /></a>
               </li>
             </ul>
-            
           </nav>         
         </div>
       ) : user ? (
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Auto Deals</Link>
+        <div className={style.navContainer}>
+          <nav className={style.navClass}>
+            <Link to="/" className={style.navTitle}>Motor Deals</Link>
+            <ul className={style.navUl}>
+              <li className={style.navLi}>
+                <Link to="/reviews" className={style.navAnchor}><FaRegStar />Reviews</Link>
               </li>
-              <li>
-                <Link to="/reviews">Reviews</Link>
+              <li className={style.navLi}>
+                <Link to='/profile' className={style.navAnchor}><PiUser />{user.username}</Link>    
               </li>
-              <li>
-                <Link to='/profile'>{user.username}</Link>    
-              </li>
-              <li>
-              <button onClick={logout}>Logout</button>
+              <li className={style.navLi}>
+                <a onClick={logout} className={style.navAnchor}><FaArrowRightFromBracket /></a>
               </li>
             </ul>
-          </nav>
-          <span>
-            
-          </span>
-         
+          </nav>         
         </div>
       ) : (
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Auto Deals</Link>
+        <div className={style.navContainer}>
+          <nav className={style.navClass}>
+            <Link to="/" className={style.navTitle}>Motor Deals</Link>
+            <ul className={style.navUl}>
+              <li className={style.navLi}>
+                <Link to="/reviews" className={style.navAnchor}><FaRegStar />Reviews</Link>
               </li>
-              <li>
-                <Link to="/login">Login</Link>
+              <li className={style.navLi}>
+                <Link to="/login" className={style.navAnchor}>Login</Link>
               </li>
             </ul>
           </nav>

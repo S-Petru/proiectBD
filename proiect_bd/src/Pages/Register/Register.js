@@ -39,7 +39,7 @@ const Register = () => {
   return (
     <div className={styles.wrapper}>
       <div  className={styles.banner}>
-        <h2>MOTOR DEALS</h2>
+      <h2><Link to="/">MOTOR DEALS</Link></h2>
       </div>
       <div className={styles.container}>
         <h2 className={styles.title}>Register</h2>
@@ -59,7 +59,7 @@ const Register = () => {
             <input type="password" name="password" value={formData.password} onChange={handleChange} />
           </label>
 
-          <button className={styles.button} type="submit">Register</button>
+          <button className={styles.regButton} type="submit">Register</button>
         </form>
 
         <p className={styles.info}>

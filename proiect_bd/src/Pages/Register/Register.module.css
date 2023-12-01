@@ -66,8 +66,8 @@
   margin-top: 4px;
 }
 
-.button {
-  background-color: #36454F;
+.regButton {
+  background-color: #4c575e;
   color: #ececec;
   padding: 6px;
   border: none;
@@ -77,10 +77,12 @@
   font-weight: 500;
   font-style: italic;
   letter-spacing: 2px;
+  transition: 0.2s;
 }
 
-.button:hover {
-  background-color: #4c575e;
+.regButton:hover {
+  background-color: #36454F;
+  
 }
 
 .info {
@@ -90,6 +92,7 @@
 .anchor {
   text-decoration: none;
   color: #4c575e;
+  transition: 0.2s;
 }
 
 .anchor:hover {

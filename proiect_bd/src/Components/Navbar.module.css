@@ -1,53 +1,52 @@
-/* Navbar.module.css */
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.navClass {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: white;
+    position: sticky;
+    top: 0;
+}
 
-/* General Styles */
-nav {
-    background-color: #333;
-    padding: 10px;
-  }
-  
-  ul {
-    list-style: none;
+.navTitle {
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+    margin: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FD673A; 
+    transform: skew(-16deg, 0);
+}
+
+.navUl {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  li {
+}
+
+.navUl .navLi {
     margin: 0;
-  }
-  
-  /* Navbar Item Styles */
-  a {
+    padding: 0;
+    list-style: none; 
+}
+
+.navClass .navUl .navLi .navAnchor {
+    margin: 0;
+    padding: 0;
+    display: block;
     text-decoration: none;
+    color: #333;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    transition: 0.1s;
+}
+
+.navClass .navUl .navLi .navAnchor:not(.active):hover {
+    background-color:#4c575e;
     color: white;
-    font-weight: bold;
-    padding: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  a:hover {
-    background-color: #555;
-  }
-  
-  /* Logo Style */
-  h1 {
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  
-  /* Mobile Styles */
-  @media only screen and (max-width: 600px) {
-    ul {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    li {
-      margin-bottom: 10px;
-    }
-  }
-  
+}
+

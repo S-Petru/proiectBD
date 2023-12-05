@@ -27,7 +27,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    height: 150px;
+    height: fit-content;
     width: 95%;
     background-color: antiquewhite;
     margin: 16px 0px;
@@ -53,6 +53,29 @@
 
 .reviewContent {
     height: 90%;
-    width: 50%;
+    width:60%;
     background-color: tomato;
+}
+
+.starsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: gray;
+}
+
+.starsContainer p {
+    margin: 0;
+    padding: 0;
+}
+
+.stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment {
+    background-color: beige;
+
 }

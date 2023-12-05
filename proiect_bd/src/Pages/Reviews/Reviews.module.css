@@ -1,0 +1,58 @@
+.mainWrapper {
+    margin: 0;
+    padding: 0;
+    background-color: #ececec;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    background-color: white;
+}
+
+.reviewsTitle {
+    width: 95%;
+    text-align: left;
+    transform: skew(-16deg, 0);
+    font-weight: 600;
+}
+
+.reviewCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 150px;
+    width: 95%;
+    background-color: antiquewhite;
+    margin: 16px 0px;
+    border-radius: 16px;
+}
+
+.profileInfo {
+    height: 90%;
+    width: 25%;
+    background-color: aquamarine;
+}
+
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileIcon {
+    font-size: 80px;
+}
+
+.reviewContent {
+    height: 90%;
+    width: 50%;
+    background-color: tomato;
+}

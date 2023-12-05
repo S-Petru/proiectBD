@@ -3,7 +3,7 @@ import style from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import {PiUser} from 'react-icons/pi';
 import { FaArrowRightFromBracket } from 'react-icons/fa6'
-import { FaRegStar} from 'react-icons/fa6'
+import { FaRegStar} from 'react-icons/fa6';
 
 const Navbar = () => {
   const [user, setUser] = useState(null);

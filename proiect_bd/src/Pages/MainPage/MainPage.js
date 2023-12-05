@@ -8,16 +8,6 @@ const MainPage = () => {
         <Navbar />
         <div className={style.mainContent}>
           <div className={style.mainSearchBar}>
-              <input type='text' name='producator'></input>
-              <input type='text' name='producator'></input>
-              <input type='text' name='producator'></input>
-              <input type='text' name='producator'></input>
-              <input type='text' name='producator'></input>
-              <input type='text' name='producator'></input>
-              <input type='text' name='producator'></input>
-              <input type='text' name='producator'></input>
-              <h6>asda</h6>
-              <h6>asda</h6>
           </div>
           <h4>Content</h4>
           <h4>Content</h4>

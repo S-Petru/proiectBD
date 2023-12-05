@@ -7,13 +7,18 @@
   justify-content: center;
 }
 
-.banner h2 {
-  padding: 0px;
-  margin: 0px;
+.bannerTitle {
   font-size: 70px;
   transform: skew(-16deg, 0deg);
   font-weight: 800;
   color: #FD673A;
+  text-decoration: none;
+}
+
+.banner h2 {
+  padding: 0px;
+  margin: 0px;
+  transform: skew(-16deg, 0deg);
 }
 
 .h2 {

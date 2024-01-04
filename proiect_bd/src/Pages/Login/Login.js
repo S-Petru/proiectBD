@@ -47,29 +47,28 @@ const Login = () => {
 
   return (
     <div className={styles.wrapper}>
-      {/* Banner goes here */}
       <div  className={styles.banner}>
         <h2><Link to="/" className={styles.bannerTitle}>MOTOR DEALS</Link></h2>
       </div>
       <div className={styles.container}>
-      <h2 className={styles.title}>Login</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <label className={styles.label}>
-          Username:
-          <input type="text" name="username" value={formData.username} onChange={handleChange} />
-        </label>
+        <h2 className={styles.title}>Login</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label className={styles.label}>
+            Username:
+            <input type="text" name="username" value={formData.username} onChange={handleChange} />
+          </label>
+          
+          <label className={styles.label}>
+            Password:
+            <input type="password" name="password" value={formData.password} onChange={handleChange} />
+          </label>
 
-        <label className={styles.label}>
-          Password:
-          <input type="password" name="password" value={formData.password} onChange={handleChange} />
-        </label>
+          <button className={styles.logButton} type="submit">Login</button>
+        </form>
 
-        <button className={styles.logButton} type="submit">Login</button>
-      </form>
-
-      <p className={styles.info}>
-        Don't have an account? <Link to="/register" className={styles.anchor}>Register here</Link>
-      </p>
+        <p className={styles.info}>
+          Don't have an account? <Link to="/register" className={styles.anchor}>Register here</Link>
+        </p>
       </div>
     </div>
   );

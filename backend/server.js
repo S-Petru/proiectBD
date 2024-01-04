@@ -32,6 +32,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     secure: false, // Set to true in a production environment with HTTPS
+    sameSite: 'None',
   },
 }));
 
@@ -134,4 +135,35 @@ app.post('/api/profil/tranzactii', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+});
+
+
+
+// Endpoint to fetch all reviews with user information
+app.get('/api/reviews', async (req, res) => {
+  try {
+    const reviewsQuery = `
+      SELECT
+        users.username AS username,
+        recenzii.rating,
+        masini.idmodel AS product_received,
+        recenzii.comentariu
+      FROM
+        recenzii
+      JOIN
+        tranzactii ON recenzii.idtranzactie = tranzactii.idtranzactie
+      JOIN
+        users ON tranzactii.userID = users.iduser
+      JOIN
+        masini ON tranzactii.idmasina = masini.idmasina
+    `;
+
+    const reviewsResult = await pool.query(reviewsQuery);
+    const reviews = reviewsResult.rows;
+
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });

@@ -39,7 +39,7 @@ const Register = () => {
   return (
     <div className={styles.wrapper}>
       <div  className={styles.banner}>
-      <h2><Link to="/">MOTOR DEALS</Link></h2>
+        <h2><Link to="/" className={styles.bannerTitle}>MOTOR DEALS</Link></h2>
       </div>
       <div className={styles.container}>
         <h2 className={styles.title}>Register</h2>

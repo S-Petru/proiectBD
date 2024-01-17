@@ -139,23 +139,29 @@ app.listen(port, () => {
 
 
 
-// Endpoint to fetch all reviews with user information
+// Endpoint pentru reviews cu informații detaliate despre mașină
 app.get('/api/reviews', async (req, res) => {
   try {
     const reviewsQuery = `
       SELECT
-        users.username AS username,
         recenzii.rating,
-        masini.idmodel AS product_received,
-        recenzii.comentariu
+        recenzii.comentariu,
+        users.username,
+        producatori.numeproducator AS nume_producator,
+        modele.numemodel AS nume_model,
+        masini.an_productie
       FROM
         recenzii
       JOIN
         tranzactii ON recenzii.idtranzactie = tranzactii.idtranzactie
       JOIN
-        users ON tranzactii.userID = users.iduser
+        users ON tranzactii.iduser = users.iduser
       JOIN
         masini ON tranzactii.idmasina = masini.idmasina
+      JOIN
+        modele ON masini.idmodel = modele.idmodel
+      JOIN
+        producatori ON masini.idproducator = producatori.idproducator
     `;
 
     const reviewsResult = await pool.query(reviewsQuery);
@@ -163,7 +169,7 @@ app.get('/api/reviews', async (req, res) => {
 
     res.json(reviews);
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching reviews:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });

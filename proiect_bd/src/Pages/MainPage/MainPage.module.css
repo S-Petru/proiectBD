@@ -21,3 +21,9 @@
     align-items: center;
     justify-content: center;
 }
+
+.carGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creează 4 coloane de lățime egală */
+    gap: 20px; /* Spațiul dintre carduri */
+  }

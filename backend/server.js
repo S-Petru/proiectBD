@@ -100,9 +100,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-
-
-
 // Endpoint to search and show info about a user's tranzactions
 app.post('/api/profil/tranzactii', async (req, res) => {
   try {
@@ -136,8 +133,6 @@ app.post('/api/profil/tranzactii', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-
 
 // Endpoint pentru reviews cu informații detaliate despre mașină
 app.get('/api/reviews', async (req, res) => {
@@ -173,3 +168,53 @@ app.get('/api/reviews', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+app.get('/api/cars', async (req, res) => {
+  try {
+    // Preluăm parametrii de filtrare din query string
+    const {
+      producator,
+      model,
+      kmMin,
+      kmMax,
+      combustibil,
+      anMin,
+      anMax,
+    } = req.query;
+
+    // Construim query-ul SQL în funcție de parametrii
+    const carsQuery = `
+      SELECT
+        producatori.numeproducator AS producator,
+        modele.numemodel AS model,
+        masini.an_productie AS an,
+        masini.pret,
+        masini.numar_kilometrii AS km,
+        masini.combustibil
+      FROM
+        masini
+      JOIN
+        producatori ON masini.idproducator = producatori.idproducator
+      JOIN
+        modele ON masini.idmodel = modele.idmodel
+      WHERE
+        masini.vanduta = false AND masini.rezervata = false
+        ${producator ? `AND producatori.numeproducator = '${producator}'` : ''}
+        ${model ? `AND modele.numemodel = '${model}'` : ''}
+        ${kmMin ? `AND masini.numar_kilometrii >= ${kmMin}` : ''}
+        ${kmMax ? `AND masini.numar_kilometrii <= ${kmMax}` : ''}
+        ${combustibil ? `AND masini.combustibil = '${combustibil}'` : ''}
+        ${anMin ? `AND masini.an_productie >= ${anMin}` : ''}
+        ${anMax ? `AND masini.an_productie <= ${anMax}` : ''}
+    `;
+
+    const carsResult = await pool.query(carsQuery);
+    const cars = carsResult.rows;
+
+    res.json(cars);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+

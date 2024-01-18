@@ -1,0 +1,30 @@
+/* CarCard.module.css */
+.carCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  width: 200px; /* Puteți ajusta dimensiunile cardului după necesități */
+}
+
+.carIcon {
+  font-size: 40%; /* Icona va ocupa 40% din dimensiunea cardului */
+  color: #3498db; /* Culorea icoanei */
+}
+
+.carInfo {
+  text-align: center;
+}
+
+.carInfo h2 {
+  font-size: 1.5em; /* Mărimea fontului pentru producător și model */
+  margin: 0;
+}
+
+.carInfo p {
+  font-size: 0.8em; /* Mărimea fontului pentru combustibil și kilometri */
+  color: #777; /* Gri deschis pentru textul secundar */
+}
